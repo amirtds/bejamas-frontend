@@ -195,6 +195,7 @@ export default function Products(props) {
                   <Disclosure
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
+                    defaultOpen={true}
                   >
                     {({ open }) => (
                       <>
@@ -246,6 +247,7 @@ export default function Products(props) {
                   </Disclosure>
                   {/* // Price range filter */}
                   <Disclosure
+                    defaultOpen={true}
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
                   >
@@ -412,7 +414,11 @@ export default function Products(props) {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
               {/* Filters */}
               <form className="hidden lg:block">
-                <Disclosure as="div" className="border-b border-gray-200 py-6">
+                <Disclosure
+                  as="div"
+                  className="border-b border-gray-200 py-6"
+                  defaultOpen={true}
+                >
                   {({ open }) => (
                     <>
                       <h3 className="-my-3 flow-root">
@@ -463,7 +469,11 @@ export default function Products(props) {
                     </>
                   )}
                 </Disclosure>
-                <Disclosure as="div" className="border-b border-gray-200 py-6">
+                <Disclosure
+                  as="div"
+                  className="border-b border-gray-200 py-6"
+                  defaultOpen={true}
+                >
                   {({ open }) => (
                     <>
                       <h3 className="-my-3 flow-root">
