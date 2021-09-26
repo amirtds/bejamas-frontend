@@ -13,7 +13,6 @@ export default function Home({ banner, featuredProduct, allProducts, promo }) {
   const [cartItems, setCartItems] = useState([]);
 
   function handleAddToCart(product) {
-    console.log(product);
     setCartItems([...cartItems, product]);
   }
   function clearCart() {
