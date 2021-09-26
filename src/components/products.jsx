@@ -538,7 +538,7 @@ export default function Products(props) {
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
                 <div className="">
-                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:col-span-2 lg:gap-x-8 p-8">
+                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 lg:col-span-3 lg:gap-x-8 p-8">
                     {pagedProducts.map((product) => (
                       <motion.div
                         key={product.id}
