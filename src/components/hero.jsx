@@ -89,7 +89,7 @@ export default function Hero(props) {
                 className="object-center object-cover"
                 width={800}
                 height={600}
-                quality={80}
+                quality={10}
               />
             </div>
           </motion.div>
