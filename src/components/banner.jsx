@@ -33,6 +33,7 @@ export default function Banner(props) {
               </div>
               <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
                 <button
+                  aria-label="Close"
                   type="button"
                   className="-mr-1 flex p-2 rounded-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
                 ></button>
