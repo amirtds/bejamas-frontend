@@ -537,27 +537,12 @@ export default function Products(props) {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <motion.div className="">
-                  <motion.div
-                    ref={ref}
-                    className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:col-span-2 lg:gap-x-8 p-8"
-                  >
+                <div className="">
+                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:col-span-2 lg:gap-x-8 p-8">
                     {pagedProducts.map((product) => (
                       <motion.div
                         key={product.id}
                         whileHover={{ scale: 1.05 }}
-                        animate={
-                          inView
-                            ? {
-                                opacity: 1,
-                                transition: {
-                                  delay:
-                                    filteredProducts.indexOf(product) * 0.5 +
-                                    0.75,
-                                },
-                              }
-                            : { opacity: 0 }
-                        }
                         className="group text-sm"
                       >
                         <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden">
@@ -589,8 +574,8 @@ export default function Products(props) {
                         </motion.button>
                       </motion.div>
                     ))}
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
                 {/* pagination */}
                 <nav className="border-t border-gray-200 px-4 mt-4 flex items-center justify-between sm:px-0">
                   <div className="-mt-px w-0 flex-1 flex"></div>
