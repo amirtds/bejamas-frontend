@@ -95,6 +95,7 @@ const ALL_PRODUCTS_QUERY = gql`
       category
       price
       currency
+      bestseller
       image {
         src
         alt

@@ -565,9 +565,19 @@ export default function Products(props) {
                             className="w-full h-full object-center object-cover rounded-lg"
                           />
                         </div>
-                        <p className="text-gray-500 italic mt-4">
-                          {product.category}
-                        </p>
+                        <div className="mt-4 flex justify-between">
+                          <div>
+                            <h3 className="text-sm text-gray-700"></h3>
+                            <p className="mt-1 text-sm text-gray-500">
+                              {product.category}
+                            </p>
+                          </div>
+                          {product.bestseller && (
+                            <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                              Best Seller
+                            </span>
+                          )}
+                        </div>
                         <h3 className=" font-medium text-gray-900">
                           {product.name}
                         </h3>
