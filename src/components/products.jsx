@@ -195,6 +195,7 @@ export default function Products(props) {
                   <Disclosure
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
+                    defaultOpen={true}
                   >
                     {({ open }) => (
                       <>
@@ -246,6 +247,7 @@ export default function Products(props) {
                   </Disclosure>
                   {/* // Price range filter */}
                   <Disclosure
+                    defaultOpen={true}
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
                   >
@@ -412,7 +414,11 @@ export default function Products(props) {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
               {/* Filters */}
               <form className="hidden lg:block">
-                <Disclosure as="div" className="border-b border-gray-200 py-6">
+                <Disclosure
+                  as="div"
+                  className="border-b border-gray-200 py-6"
+                  defaultOpen={true}
+                >
                   {({ open }) => (
                     <>
                       <h3 className="-my-3 flow-root">
@@ -463,7 +469,11 @@ export default function Products(props) {
                     </>
                   )}
                 </Disclosure>
-                <Disclosure as="div" className="border-b border-gray-200 py-6">
+                <Disclosure
+                  as="div"
+                  className="border-b border-gray-200 py-6"
+                  defaultOpen={true}
+                >
                   {({ open }) => (
                     <>
                       <h3 className="-my-3 flow-root">
@@ -538,7 +548,7 @@ export default function Products(props) {
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
                 <div className="">
-                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:col-span-2 lg:gap-x-8 p-8">
+                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 lg:col-span-3 lg:gap-x-8 p-8">
                     {pagedProducts.map((product) => (
                       <motion.div
                         key={product.id}
@@ -555,9 +565,19 @@ export default function Products(props) {
                             className="w-full h-full object-center object-cover rounded-lg"
                           />
                         </div>
-                        <p className="text-gray-500 italic mt-4">
-                          {product.category}
-                        </p>
+                        <div className="mt-4 flex justify-between">
+                          <div>
+                            <h3 className="text-sm text-gray-700"></h3>
+                            <p className="mt-1 text-sm text-gray-500">
+                              {product.category}
+                            </p>
+                          </div>
+                          {product.bestseller && (
+                            <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                              Best Seller
+                            </span>
+                          )}
+                        </div>
                         <h3 className=" font-medium text-gray-900">
                           {product.name}
                         </h3>
