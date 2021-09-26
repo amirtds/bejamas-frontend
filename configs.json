@@ -1,5 +1,3 @@
 {
-  "STRAPI_URL": "https://bejamas-apis.onrender.com",
-  "STRAPI_DOMAIN": "bejamas-apis.onrender.com",
   "IMAGE_DOMAINS": ["images.pexels.com"]
 }
