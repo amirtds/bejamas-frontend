@@ -195,7 +195,7 @@ export default function Products(props) {
                   <Disclosure
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
-                    defaultOpen={true}
+                    defaultOpen={false}
                   >
                     {({ open }) => (
                       <>
@@ -247,7 +247,7 @@ export default function Products(props) {
                   </Disclosure>
                   {/* // Price range filter */}
                   <Disclosure
-                    defaultOpen={true}
+                    defaultOpen={false}
                     as="div"
                     className="border-t border-gray-200 px-4 py-6"
                   >
@@ -417,7 +417,7 @@ export default function Products(props) {
                 <Disclosure
                   as="div"
                   className="border-b border-gray-200 py-6"
-                  defaultOpen={true}
+                  defaultOpen={false}
                 >
                   {({ open }) => (
                     <>
@@ -472,7 +472,7 @@ export default function Products(props) {
                 <Disclosure
                   as="div"
                   className="border-b border-gray-200 py-6"
-                  defaultOpen={true}
+                  defaultOpen={false}
                 >
                   {({ open }) => (
                     <>
