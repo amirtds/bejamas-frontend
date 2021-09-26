@@ -2,6 +2,7 @@
 import { Fragment } from "react";
 import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { Popover, Transition } from "@headlessui/react";
+import Image from "next/image";
 
 export default function Header(props) {
   const cartItems = props.cartItems;
@@ -14,7 +15,10 @@ export default function Header(props) {
             <div className="flex-1 flex">
               <a href="#">
                 <span className="sr-only">Workflow</span>
-                <img
+                <Image
+                  width={150}
+                  height={50}
+                  quality={10}
                   className="h-6 w-auto"
                   src="https://images.ctfassets.net/e5382hct74si/5L4IjrqHTSzEQDQcJ9qDUz/f298added4049edf305eb484273a8edb/bejamas-logo.svg"
                   alt=""
