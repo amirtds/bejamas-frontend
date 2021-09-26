@@ -53,29 +53,35 @@ export default function Header(props) {
 
                     <form className="max-w-2xl mx-auto px-4">
                       <ul role="list" className="divide-y divide-gray-200">
-                        {cartItems.map((product) => (
-                          <li
-                            key={product.id}
-                            className="py-6 flex items-center"
-                          >
-                            <img
-                              src={product.image.src}
-                              alt={product.image.alt}
-                              className="flex-none w-16 h-16 rounded-md border border-gray-200"
-                            />
-                            <div className="ml-4 flex-auto">
-                              <h3 className="font-medium text-gray-900">
-                                {product.name}
-                              </h3>
-                              <p className="text-gray-500">
-                                {product.category}{" "}
-                                <span className="text-xs font-semibold pl-2">
-                                  ${product.price}
-                                </span>
-                              </p>
-                            </div>
-                          </li>
-                        ))}
+                        {cartItems.length === 0 ? (
+                          <h3 className="font-bold text-base text-gray-900 py-8 px-2">
+                            No Items in the Cart
+                          </h3>
+                        ) : (
+                          cartItems.map((product) => (
+                            <li
+                              key={product.id}
+                              className="py-6 flex items-center"
+                            >
+                              <img
+                                src={product.image.src}
+                                alt={product.image.alt}
+                                className="flex-none w-16 h-16 rounded-md border border-gray-200"
+                              />
+                              <div className="ml-4 flex-auto">
+                                <h3 className="font-medium text-gray-900">
+                                  {product.name}
+                                </h3>
+                                <p className="text-gray-500">
+                                  {product.category}{" "}
+                                  <span className="text-xs font-semibold pl-2">
+                                    ${product.price}
+                                  </span>
+                                </p>
+                              </div>
+                            </li>
+                          ))
+                        )}
                       </ul>
 
                       <button
