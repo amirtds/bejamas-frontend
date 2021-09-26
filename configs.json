@@ -1,5 +1,5 @@
 {
-  "STRAPI_URL": "https://bejamas-apis.onrender.com",
-  "STRAPI_DOMAIN": "bejamas-apis.onrender.com",
+  "STRAPI_URL": "http://localhost:1337",
+  "STRAPI_DOMAIN": "localhost:1337",
   "IMAGE_DOMAINS": ["images.pexels.com"]
 }
