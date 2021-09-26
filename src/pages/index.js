@@ -7,6 +7,7 @@ import Products from "../components/products";
 import Promo from "../components/promo";
 import Footer from "../components/footer";
 import { useState } from "react";
+import Head from "next/head";
 
 export default function Home({ banner, featuredProduct, allProducts, promo }) {
   const [cartItems, setCartItems] = useState([]);
@@ -20,8 +21,21 @@ export default function Home({ banner, featuredProduct, allProducts, promo }) {
   }
   return (
     <div>
+      <Head>
+        <title>Bejamas Ecommerce</title>
+        <link
+          rel="icon"
+          href="https://bejamas.io/favicon-32x32.png?v=9bd4608db817bfebf0b453d5aab2f1c0"
+        />
+        <meta
+          property="og:title"
+          content="My page title"
+          key="title"
+          lang="en"
+        />
+      </Head>
       <Banner banner={banner} />
-      <Header cartItems={cartItems} clearCart={clearCart}/>
+      <Header cartItems={cartItems} clearCart={clearCart} />
       <Hero
         featuredProduct={featuredProduct}
         allProducts={allProducts}
