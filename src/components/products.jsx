@@ -1,5 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+} from "@heroicons/react/solid";
+
 import { XIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -82,6 +87,16 @@ export default function Products(props) {
   // handle page change
   function handlePage(page) {
     setCurrentPage(page);
+  }
+  function handleNextPage() {
+    if (currentPage < pagesCount) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   }
   function filterProducts() {
     if (activeCategories.length === 0 && activePriceRange === undefined) {
@@ -598,7 +613,19 @@ export default function Products(props) {
                 </div>
                 {/* pagination */}
                 <nav className="border-t border-gray-200 px-4 mt-4 flex items-center justify-between sm:px-0">
-                  <div className="-mt-px w-0 flex-1 flex"></div>
+                  <div className="-mt-px w-0 flex-1 flex">
+                    <button
+                      disabled={currentPage === 1}
+                      onClick={handlePrevPage}
+                      className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 disabled:opacity-25"
+                    >
+                      <ArrowNarrowLeftIcon
+                        className="mr-3 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                      Previous
+                    </button>
+                  </div>
                   <div className="hidden md:-mt-px md:flex">
                     {pages.map((page) => (
                       <button
@@ -615,7 +642,19 @@ export default function Products(props) {
                       </button>
                     ))}
                   </div>
-                  <div className="-mt-px w-0 flex-1 flex justify-end"></div>
+                  <div className="-mt-px w-0 flex-1 flex justify-end">
+                    <button
+                      disabled={currentPage === pages.length}
+                      onClick={handleNextPage}
+                      className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 disabled:opacity-25"
+                    >
+                      Next
+                      <ArrowNarrowRightIcon
+                        className="ml-3 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
                 </nav>
 
                 {/* /End replace */}
