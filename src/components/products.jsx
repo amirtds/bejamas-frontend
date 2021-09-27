@@ -1,5 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+} from "@heroicons/react/solid";
+
 import { XIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -11,11 +16,6 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/solid";
 import _ from "lodash";
-
-const sortOptions = [
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
-];
 
 export default function Products(props) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -63,11 +63,13 @@ export default function Products(props) {
       );
     }
     setActiveCategories(allActiveCategories);
+    setCurrentPage(1);
   }
   // handle price range click
   function handlePrice(e) {
     const priceRange = e.target.value;
     setActivePriceRange(priceRange);
+    setCurrentPage(1);
   }
   // handle sorting
   function handleSort(e) {
@@ -76,12 +78,31 @@ export default function Products(props) {
       setFilteredProducts(filteredProducts.sort((a, b) => a.price - b.price));
     } else if (sort === "price_high_low") {
       setFilteredProducts(filteredProducts.sort((a, b) => b.price - a.price));
+    } else if (sort === "name_a_z") {
+      setFilteredProducts(
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
+      );
+    } else if (sort === "name_z_a") {
+      setFilteredProducts(
+        filteredProducts.sort((a, b) => b.name.localeCompare(a.name))
+      );
     }
     setSortBy(sort);
+    setCurrentPage(1);
   }
   // handle page change
   function handlePage(page) {
     setCurrentPage(page);
+  }
+  function handleNextPage() {
+    if (currentPage < pagesCount) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   }
   function filterProducts() {
     if (activeCategories.length === 0 && activePriceRange === undefined) {
@@ -391,6 +412,32 @@ export default function Products(props) {
                           Price: Low to High
                         </button>
                       </Menu.Item>
+                      <Menu.Item>
+                        <button
+                          onClick={handleSort}
+                          name="name_a_z"
+                          className={
+                            sortBy === "name_a_z"
+                              ? "text-gray-900 font-medium  block px-4 py-2 text-sm"
+                              : "text-gray-500 font-medium  block px-4 py-2 text-sm"
+                          }
+                        >
+                          Name : A-Z
+                        </button>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <button
+                          onClick={handleSort}
+                          name="name_z_a"
+                          className={
+                            sortBy === "name_z_a"
+                              ? "text-gray-900 font-medium  block px-4 py-2 text-sm"
+                              : "text-gray-500 font-medium  block px-4 py-2 text-sm"
+                          }
+                        >
+                          Name : Z-A
+                        </button>
+                      </Menu.Item>
                     </div>
                   </Menu.Items>
                 </Transition>
@@ -598,7 +645,19 @@ export default function Products(props) {
                 </div>
                 {/* pagination */}
                 <nav className="border-t border-gray-200 px-4 mt-4 flex items-center justify-between sm:px-0">
-                  <div className="-mt-px w-0 flex-1 flex"></div>
+                  <div className="-mt-px w-0 flex-1 flex">
+                    <button
+                      disabled={currentPage === 1}
+                      onClick={handlePrevPage}
+                      className="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 disabled:opacity-25"
+                    >
+                      <ArrowNarrowLeftIcon
+                        className="mr-3 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                      Previous
+                    </button>
+                  </div>
                   <div className="hidden md:-mt-px md:flex">
                     {pages.map((page) => (
                       <button
@@ -615,7 +674,19 @@ export default function Products(props) {
                       </button>
                     ))}
                   </div>
-                  <div className="-mt-px w-0 flex-1 flex justify-end"></div>
+                  <div className="-mt-px w-0 flex-1 flex justify-end">
+                    <button
+                      disabled={currentPage === pages.length}
+                      onClick={handleNextPage}
+                      className="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 disabled:opacity-25"
+                    >
+                      Next
+                      <ArrowNarrowRightIcon
+                        className="ml-3 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
                 </nav>
 
                 {/* /End replace */}
