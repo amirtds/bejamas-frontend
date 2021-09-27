@@ -1,34 +1,155 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Introduction
 
-## Getting Started
+This is a demo Ecommerce site that is using [Next.js](https://nextjs.org) and [Strapi](https://strapi.io).
+You can access published site at [https://bejamas-frontend.vercel.app](https://bejamas-frontend.vercel.app) and production CMS at [https://bejamas-apis.onrender.com](https://bejamas-apis.onrender.com)
 
-First, run the development server:
+> This application is not ready for production
 
-```bash
-npm run dev
-# or
-yarn dev
+## Data Schema and Database
+
+As mentioned in above I'm using Strapi as the Headless CMS and it has multiple content type
+
+- Products
+- Banner
+- Promo
+
+Here you can find gql schema for the existing components
+
+```graphql
+// 1. GQL Queries to get data from Strapi
+// 1.1 Banner
+const BANNER_QUERY = gql`
+  query {
+    banners {
+      id
+      enabled
+      text
+      buttonLink
+      buttonText
+    }
+  }
+`;
+
+// 1.2 featured product
+const FEATURED_PRODUCT_QUERY = gql`
+  query {
+    products(where: { featured: true }) {
+      id
+      name
+      category
+      price
+      currency
+      image {
+        src
+        alt
+      }
+      details {
+        description
+        dimensions {
+          width
+          height
+        }
+        size
+      }
+    }
+  }
+`;
+
+// 1.3 all products
+const ALL_PRODUCTS_QUERY = gql`
+  query {
+    products {
+      id
+      name
+      category
+      price
+      currency
+      bestseller
+      image {
+        src
+        alt
+      }
+      details {
+        description
+        dimensions {
+          width
+          height
+        }
+        size
+      }
+    }
+  }
+`;
+
+// 1.4 promo data
+const PROMO_QUERY = gql`
+  query {
+    promos {
+      enabled
+      text
+      buttonText
+      buttonUrl
+    }
+  }
+`;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## APIs
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+I only developed one API `/api/products` to get list of all products you can try it [here](https://bejamas-frontend.vercel.app/api/products)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## How to load data to Strapi
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+I developed a Strapi GQL client using Python to load data to Strapi. It's not open sourced yet but you can see below how it works.
 
-## Learn More
+![gif](./public/strapi_gql_client_hidden.gif)
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### FeaturedProduct
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+One of the products has a flag called `featured` that it's a featured artwork. It should be displayed above the product list.
 
-## Deploy on Vercel
+### ProductList
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The product list contains 6 artworks. After clicking on "Add to Cart" users can see the product in the cart. Some product in CMS can be flagged as `bestseller` and it will be displayed in the product list.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### AddtoCart
+
+Add Cart Icon shows the numnber of available items in the Cart and when users click on it they see details of the items.
+By clicking on "Clear" they can clear the cart.
+
+### Pagination
+
+Products are paginated. On one page we have 6 items. The pagination shows the current page.
+
+### Sorting
+
+Products can be sorted byt price. Hight to Low and Low to High.
+
+### Filtering
+
+Products are filterable. Users can filter products by their category and price range. Category names are loaded dynamically based on existing categories to the list of filters
+
+### Webperformance
+
+Performance of the site is optimized for mobile and desktop.
+
+![performance](./public/performance.png)
+
+You can see the report [here](https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fbejamas-frontend.vercel.app%2F)
+
+### Controloing UI components in Strapi
+
+You can also control some of the UI components in Strapi. For example you can disable the banner and promo. You can change their text, button text and button url.
+
+![gif](./public/control_ui_components_with_cms.gif)
+
+## How to run it locally
+
+To run this app locally and cpnsume live data from Strapi at [https://bejamas-apis.onrender.com](https://bejamas-apis.onrender.com)
+
+- Create `.env` file at the root of the project and add `STRAPI_GRAPHQL_ENDPOINT = "https://bejamas-apis.onrender.com/graphql"` to it
+
+- In the root of your project run `npm i`
+- Run the project by `npm run dev`
