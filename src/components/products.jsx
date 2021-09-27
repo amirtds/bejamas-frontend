@@ -68,11 +68,13 @@ export default function Products(props) {
       );
     }
     setActiveCategories(allActiveCategories);
+    setCurrentPage(1);
   }
   // handle price range click
   function handlePrice(e) {
     const priceRange = e.target.value;
     setActivePriceRange(priceRange);
+    setCurrentPage(1);
   }
   // handle sorting
   function handleSort(e) {
@@ -83,6 +85,7 @@ export default function Products(props) {
       setFilteredProducts(filteredProducts.sort((a, b) => b.price - a.price));
     }
     setSortBy(sort);
+    setCurrentPage(1);
   }
   // handle page change
   function handlePage(page) {
