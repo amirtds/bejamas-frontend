@@ -147,7 +147,7 @@ You can also control some of the UI components in Strapi. For example you can di
 
 ## How to run it locally
 
-To run this app locally and cpnsume live data from Strapi at [https://bejamas-apis.onrender.com](https://bejamas-apis.onrender.com)
+To run this app locally from `master` branch and consume live data from Strapi at [https://bejamas-apis.onrender.com](https://bejamas-apis.onrender.com)
 
 - Create `.env` file at the root of the project and add `STRAPI_GRAPHQL_ENDPOINT = "https://bejamas-apis.onrender.com/graphql"` to it
 
