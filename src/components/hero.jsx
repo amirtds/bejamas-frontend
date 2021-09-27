@@ -263,7 +263,7 @@ export default function Hero(props) {
                               quality={10}
                               width={300}
                               height={250}
-                              className="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-md"
+                              className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                             />
                           </a>
                         </Link>
