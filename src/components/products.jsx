@@ -17,11 +17,6 @@ import {
 } from "@heroicons/react/solid";
 import _ from "lodash";
 
-const sortOptions = [
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
-];
-
 export default function Products(props) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const allProducts = props.allProducts;
@@ -83,6 +78,14 @@ export default function Products(props) {
       setFilteredProducts(filteredProducts.sort((a, b) => a.price - b.price));
     } else if (sort === "price_high_low") {
       setFilteredProducts(filteredProducts.sort((a, b) => b.price - a.price));
+    } else if (sort === "name_a_z") {
+      setFilteredProducts(
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
+      );
+    } else if (sort === "name_z_a") {
+      setFilteredProducts(
+        filteredProducts.sort((a, b) => b.name.localeCompare(a.name))
+      );
     }
     setSortBy(sort);
     setCurrentPage(1);
@@ -407,6 +410,32 @@ export default function Products(props) {
                           }
                         >
                           Price: Low to High
+                        </button>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <button
+                          onClick={handleSort}
+                          name="name_a_z"
+                          className={
+                            sortBy === "name_a_z"
+                              ? "text-gray-900 font-medium  block px-4 py-2 text-sm"
+                              : "text-gray-500 font-medium  block px-4 py-2 text-sm"
+                          }
+                        >
+                          Name : A-Z
+                        </button>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <button
+                          onClick={handleSort}
+                          name="name_z_a"
+                          className={
+                            sortBy === "name_z_a"
+                              ? "text-gray-900 font-medium  block px-4 py-2 text-sm"
+                              : "text-gray-500 font-medium  block px-4 py-2 text-sm"
+                          }
+                        >
+                          Name : Z-A
                         </button>
                       </Menu.Item>
                     </div>
