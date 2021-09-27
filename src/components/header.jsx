@@ -14,7 +14,7 @@ export default function Header(props) {
             {/* Logo */}
             <div className="flex-1 flex">
               <a href="#">
-                <span className="sr-only">Workflow</span>
+                <span className="sr-only">Bejamas_</span>
                 <Image
                   width={150}
                   height={50}
@@ -83,15 +83,17 @@ export default function Header(props) {
                           ))
                         )}
                       </ul>
-                      <p className="text-gray-900 mt-2 mb-4">
-                        Total:{" "}
-                        <span className="text-base font-extrabold">
-                          $
-                          {cartItems.reduce((acc, product) => {
-                            return acc + product.price;
-                          }, 0)}
-                        </span>
-                      </p>
+                      {cartItems.length > 0 && (
+                        <p className="text-gray-900 mt-2 mb-4">
+                          Total:{" "}
+                          <span className="text-base font-extrabold">
+                            $
+                            {cartItems.reduce((acc, product) => {
+                              return acc + product.price;
+                            }, 0)}
+                          </span>
+                        </p>
+                      )}
                       <button
                         type="submit"
                         className="w-full bg-gray-900 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500"
